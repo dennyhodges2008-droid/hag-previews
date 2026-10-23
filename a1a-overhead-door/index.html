@@ -1,0 +1,582 @@
+<style>
+#hag-preview {
+  --accent: #087e94;
+  --accent-dark: #056277;
+  --ink: #152c3b;
+  --muted: #607380;
+  --paper: #ffffff;
+  --light: #edf7f8;
+  --line: #dce8eb;
+  --dark: #102b3b;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+#hag-preview *, #hag-preview *::before, #hag-preview *::after {
+  box-sizing: border-box;
+}
+#hag-preview a { color: inherit; text-decoration: none; }
+#hag-preview .container {
+  width: min(1160px, calc(100% - 40px));
+  margin-inline: auto;
+}
+#hag-preview .preview-bar {
+  padding: 9px 16px;
+  background: var(--dark);
+  color: #d4e6ea;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  font-weight: 750;
+}
+#hag-preview .header {
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+#hag-preview .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 80px;
+}
+#hag-preview .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 850;
+  font-size: clamp(17px, 2.2vw, 23px);
+  line-height: 1.15;
+  letter-spacing: -.05em;
+}
+#hag-preview .brand-mark {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  flex: none;
+  background: var(--accent);
+  position: relative;
+  box-shadow: 0 5px 12px #087e9426;
+}
+#hag-preview .brand-mark::before {
+  content: "";
+  position: absolute;
+  inset: 11px 9px 10px;
+  border: 3px solid white;
+  border-radius: 3px 3px 1px 1px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 5px,
+    #ffffff9c 5px 7px
+  );
+}
+#hag-preview .brand-small {
+  display: block;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .15em;
+  color: var(--accent-dark);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+#hag-preview .btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  min-height: 52px;
+  padding: 13px 22px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  transition: transform .15s ease, background .15s ease;
+}
+#hag-preview .btn:hover { transform: translateY(-2px); }
+#hag-preview .btn-primary {
+  color: #fff;
+  background: var(--accent);
+}
+#hag-preview .btn-primary:hover { background: var(--accent-dark); }
+#hag-preview .btn-outline {
+  color: var(--dark);
+  background: #fff;
+  border: 1px solid #bfd4d9;
+}
+#hag-preview .btn-light {
+  color: var(--dark);
+  background: #fff;
+}
+#hag-preview .header-call {
+  background: var(--accent);
+  color: #fff;
+  min-height: 44px;
+  padding: 11px 16px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+#hag-preview .hero {
+  background:
+    radial-gradient(circle at 92% 10%, #b2dfe4 0, transparent 33%),
+    linear-gradient(135deg, #f6fbfb, #eaf6f8);
+  padding: 75px 0 82px;
+}
+#hag-preview .hero-grid {
+  display: grid;
+  grid-template-columns: 1.12fr .88fr;
+  align-items: center;
+  gap: 55px;
+}
+#hag-preview .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-weight: 850;
+  color: var(--accent-dark);
+}
+#hag-preview .eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+#hag-preview h1, #hag-preview h2, #hag-preview h3, #hag-preview p {
+  margin-top: 0;
+}
+#hag-preview h1, #hag-preview h2, #hag-preview h3 {
+  letter-spacing: -.045em;
+  line-height: 1.12;
+}
+#hag-preview h1 {
+  font-size: clamp(37px, 5.1vw, 66px);
+  max-width: 720px;
+  margin: 20px 0 21px;
+  font-weight: 850;
+}
+#hag-preview .hero-desc {
+  max-width: 550px;
+  font-size: clamp(16px, 2vw, 19px);
+  color: #536b77;
+  margin-bottom: 30px;
+}
+#hag-preview .hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+#hag-preview .hero-note {
+  margin: 20px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+#hag-preview .hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1.12;
+  border-radius: 28px;
+  background:
+    linear-gradient(155deg, #1e586d 0%, #0c3246 100%);
+  box-shadow: 0 26px 48px #0b34421f;
+  overflow: hidden;
+}
+#hag-preview .hero-visual::before {
+  content: "";
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  border: 1px solid #ffffff25;
+  border-radius: 50%;
+  transform: translate(40%, -35%);
+  box-shadow:
+    0 0 0 55px #ffffff08,
+    0 0 0 115px #ffffff06;
+}
+#hag-preview .door-house {
+  position: relative;
+  width: 73%;
+  padding: 22px 18px 25px;
+  border: 2px solid #ffffff79;
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  background: #ffffff15;
+  transform: translateY(18px);
+}
+#hag-preview .door-roof {
+  height: 17px;
+  border-radius: 4px;
+  background: #b8e2e7;
+  margin: -33px -28px 23px;
+  box-shadow: 0 5px 0 #072b3d4d;
+}
+#hag-preview .garage-door {
+  aspect-ratio: 1.25;
+  border: 7px solid #b7d6df;
+  border-radius: 5px 5px 0 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #e9f5f7 0,
+      #e9f5f7 17%,
+      #aac7d0 17.5%,
+      #e9f5f7 19%
+    );
+  box-shadow: inset 0 0 22px #1a465f16;
+}
+#hag-preview .visual-label {
+  position: absolute;
+  bottom: 23px;
+  left: 23px;
+  right: 23px;
+  background: #fff;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 0 10px 20px #001b2b22;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+#hag-preview .visual-label small {
+  color: var(--accent-dark);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+#hag-preview .section { padding: 85px 0; }
+#hag-preview .section-head {
+  max-width: 660px;
+  margin-bottom: 35px;
+}
+#hag-preview h2 {
+  font-size: clamp(29px, 3.6vw, 44px);
+  font-weight: 850;
+  margin: 12px 0 15px;
+}
+#hag-preview .section-sub {
+  color: var(--muted);
+  font-size: 16px;
+  margin: 0;
+}
+#hag-preview .service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+#hag-preview .service-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 30px 27px;
+  background: #fff;
+  box-shadow: 0 8px 28px #122f4009;
+}
+#hag-preview .service-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--light);
+  color: var(--accent-dark);
+  border-radius: 13px;
+  margin-bottom: 23px;
+  font-size: 26px;
+  font-weight: 850;
+}
+#hag-preview .service-card h3 {
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+#hag-preview .service-card p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 0;
+}
+#hag-preview .trust {
+  background: var(--dark);
+  color: #fff;
+  padding: 30px 0;
+}
+#hag-preview .trust-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 19px;
+  text-align: center;
+}
+#hag-preview .stars {
+  color: #f3bd56;
+  letter-spacing: .12em;
+  font-size: 23px;
+}
+#hag-preview .trust-score {
+  font-size: 24px;
+  font-weight: 850;
+}
+#hag-preview .trust-copy {
+  color: #cee2e8;
+  font-size: 15px;
+}
+#hag-preview .why {
+  background: #f6fafb;
+}
+#hag-preview .why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+#hag-preview .why-item {
+  border-left: 3px solid var(--accent);
+  padding: 7px 0 7px 21px;
+}
+#hag-preview .why-item strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+#hag-preview .why-item p {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+#hag-preview .contact-wrap {
+  background: var(--dark);
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  color: #fff;
+}
+#hag-preview .contact-intro { padding: 56px 48px; }
+#hag-preview .contact-intro .eyebrow { color: #8fd8df; }
+#hag-preview .contact-intro h2 { margin-top: 18px; }
+#hag-preview .contact-intro p { color: #bfd4dc; }
+#hag-preview .contact-actions {
+  background: #174256;
+  padding: 50px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+#hag-preview .contact-actions .btn { width: 100%; }
+#hag-preview .contact-details {
+  border-top: 1px solid #ffffff30;
+  padding-top: 19px;
+  margin-top: 9px;
+  color: #d3e2e7;
+  font-size: 14px;
+}
+#hag-preview .contact-details p { margin: 0 0 8px; }
+#hag-preview .footer {
+  margin-top: 75px;
+  background: #f3f8f9;
+  border-top: 1px solid var(--line);
+  padding: 39px 0;
+}
+#hag-preview .footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+#hag-preview .footer strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 17px;
+}
+#hag-preview .footer p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 5px;
+}
+#hag-preview .footer a { text-decoration: underline; }
+@media (max-width: 850px) {
+  #hag-preview .hero-grid { gap: 25px; }
+  #hag-preview .contact-intro { padding: 40px 30px; }
+  #hag-preview .contact-actions { padding: 40px 30px; }
+}
+@media (max-width: 700px) {
+  #hag-preview .container {
+    width: min(100% - 32px, 520px);
+  }
+  #hag-preview .header-inner { min-height: 73px; }
+  #hag-preview .brand { font-size: 17px; }
+  #hag-preview .brand-mark {
+    width: 39px;
+    height: 39px;
+  }
+  #hag-preview .header-call {
+    font-size: 0;
+    padding: 0 14px;
+    min-height: 42px;
+  }
+  #hag-preview .header-call .call-symbol { font-size: 20px; }
+  #hag-preview .hero { padding: 52px 0 60px; }
+  #hag-preview .hero-grid { grid-template-columns: 1fr; }
+  #hag-preview h1 { font-size: clamp(36px, 10vw, 52px); }
+  #hag-preview .hero-visual {
+    max-width: 520px;
+    aspect-ratio: 1.45;
+    margin-top: 15px;
+  }
+  #hag-preview .door-house { width: 59%; }
+  #hag-preview .section { padding: 63px 0; }
+  #hag-preview .service-grid,
+  #hag-preview .why-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  #hag-preview .service-card { padding: 24px; }
+  #hag-preview .contact-wrap { grid-template-columns: 1fr; }
+  #hag-preview .contact-intro { padding: 38px 27px 15px; }
+  #hag-preview .contact-actions { padding: 20px 27px 35px; }
+  #hag-preview .footer { margin-top: 55px; }
+}
+@media (max-width: 420px) {
+  #hag-preview .hero-buttons { flex-direction: column; }
+  #hag-preview .hero-buttons .btn { width: 100%; }
+  #hag-preview .brand { font-size: 15px; gap: 9px; }
+  #hag-preview .brand-small { font-size: 9px; }
+  #hag-preview .visual-label { font-size: 12px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #hag-preview { scroll-behavior: smooth; }
+}
+</style>
+
+<div id="hag-preview">
+  <div class="preview-bar">Preview prepared by Hodges Advisory Group</div>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#hag-home" aria-label="A1A Overhead Door Company home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><span class="brand-small">Neptune Beach, FL</span>A1A Overhead Door Company</span>
+      </a>
+      <a class="btn header-call" href="tel:+19048218463" aria-label="Call A1A Overhead Door Company">
+        <span class="call-symbol" aria-hidden="true">☎</span><span>Call (904) 821-8463</span>
+      </a>
+    </div>
+  </header>
+  <main id="hag-home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Garage Door Services</span>
+          <h1>Garage Door Services in Neptune Beach, FL</h1>
+          <p class="hero-desc">Contact A1A Overhead Door Company about Garage Door Services. Mon–Sat, 7 AM – 8 PM</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="tel:+19048218463">☎ &nbsp; Call (904) 821-8463</a>
+            <a class="btn btn-outline" href="#hag-contact">Request Service ↗</a>
+          </div>
+          <p class="hero-note">Neptune Beach, FL</p>
+        </div>
+        <!-- Pure CSS geometric storefront illustration; no external asset. -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="door-house"><div class="door-roof"></div><div class="garage-door"></div></div>
+          <div class="visual-label"><span>Garage Door Services</span><small>Neptune Beach, FL</small></div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="hag-services">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Services</span><h2>What we can help with</h2>
+          <p class="section-sub">Contact A1A Overhead Door Company with questions about the services listed below.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">⚒</div>
+            <h3>Garage Door Repair</h3>
+            <p>Garage door repair for Neptune Beach homes and businesses, handled by A1A&#x27;s local team.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">▤</div>
+            <h3>Garage Door Installation</h3>
+            <p>New and replacement garage door installation for Neptune Beach properties.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">⚙</div>
+            <h3>Spring Replacement</h3>
+            <p>Garage door spring replacement for doors that will not open, close, or balance properly.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">✦</div>
+            <h3>Opener Repair &amp; Installation</h3>
+            <p>Garage door opener repair and installation for Neptune Beach homes and businesses.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">⚒</div>
+            <h3>Maintenance &amp; Tune-Ups</h3>
+            <p>Garage door maintenance and tune-up service for Neptune Beach doors.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">▤</div>
+            <h3>Commercial Garage Doors</h3>
+            <p>Commercial garage door service for Neptune Beach businesses and facilities.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="trust" aria-label="Google review rating">
+      <div class="container trust-inner">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span class="trust-score">4.7 / 5</span>
+        <span class="trust-copy">Based on 978 Google reviews</span>
+      </div>
+    </section>
+    <section class="section why">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">At a Glance</span><h2>Contact A1A Overhead Door Company</h2></div>
+        <div class="why-grid">
+          <div class="why-item"><strong>Local contact</strong><p>Neptune Beach, FL</p></div>
+          <div class="why-item"><strong>Business hours</strong><p>Mon–Sat, 7 AM – 8 PM</p></div>
+          <div class="why-item"><strong>By phone</strong><p>Call (904) 821-8463 to ask about service.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="hag-contact">
+      <div class="container">
+        <div class="contact-wrap">
+          <div class="contact-intro">
+            <span class="eyebrow">Get in Touch</span>
+            <h2>Request service</h2>
+            <p>Contact A1A Overhead Door Company about your project or service question.</p>
+            <p>This preview makes the service categories and direct contact options easy to find.</p>
+          </div>
+          <div class="contact-actions">
+            <a class="btn btn-light" href="tel:+19048218463">☎ &nbsp; Call (904) 821-8463</a>
+            <a class="btn btn-primary" href="mailto:a1aoverheaddoorco@comcast.net">✉ &nbsp; Send an Email</a>
+            <div class="contact-details">
+              <p><strong>Hours:</strong> Mon–Sat, 7 AM – 8 PM</p>
+              <p><strong>Location:</strong> 1520 Emma Ln, Neptune Beach, FL 32266</p>
+              <p><strong>Phone:</strong> <a href="tel:+19048218463">(904) 821-8463</a></p>
+              <p><strong>Email:</strong> <a href="mailto:a1aoverheaddoorco@comcast.net">a1aoverheaddoorco@comcast.net</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div><strong>A1A Overhead Door Company</strong><p>1520 Emma Ln, Neptune Beach, FL 32266</p><p>Mon–Sat, 7 AM – 8 PM</p></div>
+      <div><p><a href="tel:+19048218463">(904) 821-8463</a></p><p><a href="mailto:a1aoverheaddoorco@comcast.net">a1aoverheaddoorco@comcast.net</a></p></div>
+    </div>
+  </footer>
+</div>
